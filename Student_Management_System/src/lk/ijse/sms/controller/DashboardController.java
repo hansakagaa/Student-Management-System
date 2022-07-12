@@ -8,12 +8,19 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.ijse.sms.db.DBConnection;
+import lk.ijse.sms.model.Course;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * @author : hansakagaa
@@ -45,6 +52,35 @@ public class DashboardController {
 
     public void initialize(){
         lordDateAndTime();
+        lordCourseId();
+    }
+
+    private void lordCourseId() {
+        try {
+            ArrayList<Course> dtoS = getAllCourseId();
+            for (Course dto : dtoS) {
+                cmbCourseId.getItems().add(dto.getCourse_id());
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to load Course ids").show();
+        }
+    }
+
+    private ArrayList<Course> getAllCourseId() throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(
+                "SELECT * FROM Course");
+        ResultSet rst = stm.executeQuery();
+        ArrayList<Course> courses = new ArrayList<>();
+        while (rst.next()) {
+            courses.add(new Course(
+                    rst.getString(1),
+                    rst.getString(2),
+                    rst.getDouble(3),
+                    rst.getString(4),
+                    rst.getString(5)
+            ));
+        }
+        return courses;
     }
 
     private void lordDateAndTime() {
