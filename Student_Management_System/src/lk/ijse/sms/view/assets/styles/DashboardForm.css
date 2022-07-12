@@ -8,7 +8,6 @@
 }
 
 #txt{
-    -fx-alignment: center;
     -fx-background-color: #eeeeee;
     -fx-background-radius: 25;
     -fx-border-radius: 25;
@@ -26,4 +25,9 @@
     -fx-font-weight: bold;
     -fx-background-color: #74b9ff;
     -fx-text-fill: white;
+}
+
+#date{
+    -fx-alignment: center;
+    -fx-font-size: 18;
 }

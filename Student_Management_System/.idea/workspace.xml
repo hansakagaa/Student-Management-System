@@ -22,7 +22,6 @@
     <list default="true" id="beb7358c-e715-49cb-943b-b8d9a0a8fd90" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/controller/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/view/DashboardForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/view/DashboardForm.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/view/assets/styles/DashboardForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/view/assets/styles/DashboardForm.css" afterDir="false" />
     </list>
@@ -65,9 +64,10 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/lk/ijse/sms/libs/mysql-connector-java-8.0.11.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -79,7 +79,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657599661484</updated>
-      <workItem from="1657599664476" duration="7520000" />
+      <workItem from="1657599664476" duration="8539000" />
     </task>
     <servers />
   </component>
@@ -122,10 +122,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="899" height="172" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1657602568642" />
-    <state x="163" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1657602694550">
+    <state x="163" y="27" width="1024" height="741" key="SettingsEditor" timestamp="1657607481565">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
-    <state x="163" y="27" width="1024" height="741" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1657602694550" />
+    <state x="163" y="27" width="1024" height="741" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1657607481565" />
     <state x="352" y="291" width="646" height="220" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1657602931802">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

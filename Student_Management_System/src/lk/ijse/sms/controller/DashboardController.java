@@ -3,6 +3,7 @@ package lk.ijse.sms.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -20,6 +21,8 @@ public class DashboardController {
     public JFXButton btnStudentDelete;
     public JFXTextField StudentIdSearch;
     public JFXButton btnStuSearch;
+    public JFXTextField txtRegistration_Id;
+    public Label lblDateTime;
 
 
     public void studentSaveOrUpdateOnAction(ActionEvent actionEvent) {
@@ -31,6 +34,6 @@ public class DashboardController {
     }
 
     public void studentSearchOnAction(ActionEvent actionEvent) {
-        
+
     }
 }
