@@ -20,10 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="beb7358c-e715-49cb-943b-b8d9a0a8fd90" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/lk/ijse/sms/AppInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/view/DashboardForm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/view/DashboardForm.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/view/assets/styles/DashboardForm.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/view/assets/styles/DashboardForm.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/controller/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/controller/DashboardController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +37,7 @@
         <option value="FxmlFile" />
         <option value="Class" />
         <option value="CSS File" />
+        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
@@ -69,6 +70,26 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
+  <component name="RunManager">
+    <configuration name="AppInitializer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lk.ijse.sms.AppInitializer" />
+      <module name="Student_Management_System" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lk.ijse.sms.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AppInitializer" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -79,7 +100,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657599661484</updated>
-      <workItem from="1657599664476" duration="10193000" />
+      <workItem from="1657599664476" duration="11026000" />
     </task>
     <servers />
   </component>
