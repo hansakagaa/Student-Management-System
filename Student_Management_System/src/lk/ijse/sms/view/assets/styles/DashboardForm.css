@@ -31,3 +31,17 @@
     -fx-alignment: center;
     -fx-font-size: 18;
 }
+
+#btnCancel{
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-background-color: red;
+    -fx-text-fill: white;
+}
+
+#btnSave{
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
