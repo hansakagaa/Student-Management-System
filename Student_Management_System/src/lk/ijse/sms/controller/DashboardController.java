@@ -272,8 +272,12 @@ public class DashboardController {
         return stm.executeUpdate() > 0;
     }
 
-    private boolean existStudent(String id) {
-        return false;
+    private boolean existStudent(String id) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pStm = connection.prepareStatement("");
+        pStm.setObject(1, id);
+
+        return pStm.executeQuery().next();
     }
 
     public void studentDeleteOnAction(ActionEvent actionEvent) {
