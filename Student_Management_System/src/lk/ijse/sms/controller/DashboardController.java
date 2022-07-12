@@ -57,6 +57,7 @@ public class DashboardController {
             lordRegistrationId();
             lordStudentId();
             lordIntakeId();
+            lordPaymentId();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -139,6 +140,30 @@ public class DashboardController {
             id =  "S00-001";
         }
         txtStudentId.setText(id);
+    }
+
+    private void lordPaymentId() throws SQLException, ClassNotFoundException {
+        String id;
+        ResultSet rst = DBConnection.getInstance().getConnection().prepareStatement(
+                "SELECT payment_id FROM Payment ORDER BY payment_id DESC LIMIT 1"
+        ).executeQuery();
+        if (rst.next()){
+
+            int tempId = Integer.
+                    parseInt(rst.getString(1).split("-")[1]);
+            tempId=tempId+1;
+            if (tempId<9){
+                id = "P00-00"+tempId;
+            }else if(tempId<99){
+                id = "P00-0"+tempId;
+            }else{
+                id = "P00-"+tempId;
+            }
+
+        }else{
+            id =  "P00-001";
+        }
+        txtPaymentId.setText(id);
     }
 
     private void lordCourseId() {
