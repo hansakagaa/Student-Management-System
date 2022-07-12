@@ -79,9 +79,9 @@ CREATE TABLE IF NOT EXISTS Payment(
     CONSTRAINT FOREIGN KEY (registration_id) REFERENCES Registration(registration_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO Student VALUES ('S001','Ashen','ashen@gmail.com','0762020312','Galle','200112100701');
-INSERT INTO Student VALUES ('S002','Hansaka','hansaka@gmail.com','0756848595','Matara','200148486222');
-INSERT INTO Student VALUES ('S003','Danuja','danuja@gmail.com','0758496585','Panadura','200445805456');
+INSERT INTO Student VALUES ('S00-001','Ashen','ashen@gmail.com','0762020312','Galle','200112100701');
+INSERT INTO Student VALUES ('S00-002','Hansaka','hansaka@gmail.com','0756848595','Matara','200148486222');
+INSERT INTO Student VALUES ('S00-003','Danuja','danuja@gmail.com','0758496585','Panadura','200445805456');
 
 INSERT INTO Teacher VALUES ('T001','Danuja','200445805456','0758496585','Panadura');
 INSERT INTO Teacher VALUES ('T002','Niroth','200445805456','0758496585','Panadura');

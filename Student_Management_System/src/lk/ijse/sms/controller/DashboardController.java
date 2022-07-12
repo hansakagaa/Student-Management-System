@@ -27,12 +27,12 @@ import java.util.ArrayList;
  **/
 public class DashboardController {
     public AnchorPane root;
-    public JFXTextField StudentId;
-    public JFXTextField StudentName;
-    public JFXTextField StudentEmail;
-    public JFXTextField StudentContact;
-    public JFXTextField StuAddress;
-    public JFXTextField StudentNIC;
+    public JFXTextField txtStudentId;
+    public JFXTextField txtStudentName;
+    public JFXTextField txtStudentEmail;
+    public JFXTextField txtStudentContact;
+    public JFXTextField txtStuAddress;
+    public JFXTextField txtStudentNIC;
     public JFXButton btnStudent;
     public JFXButton btnStudentDelete;
     public JFXTextField StudentIdSearch;
@@ -55,11 +55,13 @@ public class DashboardController {
         lordCourseId();
         try {
             lordRegistrationId();
+            lordStudentId();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        txtStudentId.setFocusTraversable(false);
 
 
     }
@@ -87,6 +89,30 @@ public class DashboardController {
         }
 
         txtRegistration_Id.setText(id);
+    }
+
+    private void lordStudentId() throws SQLException, ClassNotFoundException {
+        String id;
+        ResultSet rst = DBConnection.getInstance().getConnection().prepareStatement(
+                "SELECT student_id FROM Student ORDER BY student_id DESC LIMIT 1"
+        ).executeQuery();
+        if (rst.next()){
+
+            int tempId = Integer.
+                    parseInt(rst.getString(1).split("-")[1]);
+            tempId=tempId+1;
+            if (tempId<9){
+                id = "S00-00"+tempId;
+            }else if(tempId<99){
+                id = "S00-0"+tempId;
+            }else{
+                id = "S00-"+tempId;
+            }
+
+        }else{
+            id =  "S00-001";
+        }
+        txtStudentId.setText(id);
     }
 
     private void lordCourseId() {
