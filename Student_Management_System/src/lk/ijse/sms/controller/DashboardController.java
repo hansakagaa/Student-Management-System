@@ -13,8 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.sms.db.DBConnection;
-import lk.ijse.sms.model.Course;
-import lk.ijse.sms.model.Student;
+import lk.ijse.sms.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,7 +51,7 @@ public class DashboardController {
     public JFXButton btnCancel;
     public JFXButton btnSave;
 
-    public void initialize(){
+    public void initialize() {
         lordDateAndTime();
         lordCourseId();
         try {
@@ -75,21 +74,21 @@ public class DashboardController {
         ResultSet rst = DBConnection.getInstance().getConnection().prepareStatement(
                 "SELECT registration_id FROM Registration ORDER BY registration_id DESC LIMIT 1"
         ).executeQuery();
-        if (rst.next()){
+        if (rst.next()) {
 
             int tempId = Integer.
                     parseInt(rst.getString(1).split("-")[1]);
-            tempId=tempId+1;
-            if (tempId<9){
-                id = "REG00-00"+tempId;
-            }else if(tempId<99){
-                id = "REG00-0"+tempId;
-            }else{
-                id = "REG00-"+tempId;
+            tempId = tempId + 1;
+            if (tempId < 9) {
+                id = "REG00-00" + tempId;
+            } else if (tempId < 99) {
+                id = "REG00-0" + tempId;
+            } else {
+                id = "REG00-" + tempId;
             }
 
-        }else{
-            id =  "REG00-001";
+        } else {
+            id = "REG00-001";
         }
 
         txtRegistration_Id.setText(id);
@@ -100,21 +99,21 @@ public class DashboardController {
         ResultSet rst = DBConnection.getInstance().getConnection().prepareStatement(
                 "SELECT intake_id FROM Intake ORDER BY intake_id DESC LIMIT 1"
         ).executeQuery();
-        if (rst.next()){
+        if (rst.next()) {
 
             int tempId = Integer.
                     parseInt(rst.getString(1).split("-")[1]);
-            tempId=tempId+1;
-            if (tempId<9){
-                id = "INT00-00"+tempId;
-            }else if(tempId<99){
-                id = "INT00-0"+tempId;
-            }else{
-                id = "INT00-"+tempId;
+            tempId = tempId + 1;
+            if (tempId < 9) {
+                id = "INT00-00" + tempId;
+            } else if (tempId < 99) {
+                id = "INT00-0" + tempId;
+            } else {
+                id = "INT00-" + tempId;
             }
 
-        }else{
-            id =  "INT00-001";
+        } else {
+            id = "INT00-001";
         }
 
         txtIntakeId.setText(id);
@@ -125,21 +124,21 @@ public class DashboardController {
         ResultSet rst = DBConnection.getInstance().getConnection().prepareStatement(
                 "SELECT student_id FROM Student ORDER BY student_id DESC LIMIT 1"
         ).executeQuery();
-        if (rst.next()){
+        if (rst.next()) {
 
             int tempId = Integer.
                     parseInt(rst.getString(1).split("-")[1]);
-            tempId=tempId+1;
-            if (tempId<9){
-                id = "S00-00"+tempId;
-            }else if(tempId<99){
-                id = "S00-0"+tempId;
-            }else{
-                id = "S00-"+tempId;
+            tempId = tempId + 1;
+            if (tempId < 9) {
+                id = "S00-00" + tempId;
+            } else if (tempId < 99) {
+                id = "S00-0" + tempId;
+            } else {
+                id = "S00-" + tempId;
             }
 
-        }else{
-            id =  "S00-001";
+        } else {
+            id = "S00-001";
         }
         txtStudentId.setText(id);
     }
@@ -149,21 +148,21 @@ public class DashboardController {
         ResultSet rst = DBConnection.getInstance().getConnection().prepareStatement(
                 "SELECT payment_id FROM Payment ORDER BY payment_id DESC LIMIT 1"
         ).executeQuery();
-        if (rst.next()){
+        if (rst.next()) {
 
             int tempId = Integer.
                     parseInt(rst.getString(1).split("-")[1]);
-            tempId=tempId+1;
-            if (tempId<9){
-                id = "P00-00"+tempId;
-            }else if(tempId<99){
-                id = "P00-0"+tempId;
-            }else{
-                id = "P00-"+tempId;
+            tempId = tempId + 1;
+            if (tempId < 9) {
+                id = "P00-00" + tempId;
+            } else if (tempId < 99) {
+                id = "P00-0" + tempId;
+            } else {
+                id = "P00-" + tempId;
             }
 
-        }else{
-            id =  "P00-001";
+        } else {
+            id = "P00-001";
         }
         txtPaymentId.setText(id);
     }
@@ -247,33 +246,33 @@ public class DashboardController {
     }
 
     private boolean saveStudent(Student std) throws SQLException, ClassNotFoundException {
-        String query="INSERT INTO Student VALUES(?,?,?,?,?,?)";
+        String query = "INSERT INTO Student VALUES(?,?,?,?,?,?)";
         PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(query);
-        stm.setObject(1,std.getStudent_id());
-        stm.setObject(2,std.getStudent_name());
-        stm.setObject(3,std.getEmail());
-        stm.setObject(4,std.getContact());
-        stm.setObject(5,std.getAddress());
-        stm.setObject(6,std.getNic());
+        stm.setObject(1, std.getStudent_id());
+        stm.setObject(2, std.getStudent_name());
+        stm.setObject(3, std.getEmail());
+        stm.setObject(4, std.getContact());
+        stm.setObject(5, std.getAddress());
+        stm.setObject(6, std.getNic());
 
-        return stm.executeUpdate()>0;
+        return stm.executeUpdate() > 0;
     }
 
     private boolean UpdateStudent(Student std) throws SQLException, ClassNotFoundException {
         PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(
                 "UPDATE Student SET student_name=?, email=?, contact=?, address=?, nic=? WHERE student_id=?"
         );
-        stm.setObject(1,std.getStudent_id());
-        stm.setObject(2,std.getStudent_name());
-        stm.setObject(3,std.getEmail());
-        stm.setObject(4,std.getContact());
-        stm.setObject(5,std.getAddress());
-        stm.setObject(6,std.getNic());
+        stm.setObject(1, std.getStudent_id());
+        stm.setObject(2, std.getStudent_name());
+        stm.setObject(3, std.getEmail());
+        stm.setObject(4, std.getContact());
+        stm.setObject(5, std.getAddress());
+        stm.setObject(6, std.getNic());
 
-        return stm.executeUpdate()>0;
+        return stm.executeUpdate() > 0;
     }
 
-    private boolean existStudent(String id){
+    private boolean existStudent(String id) {
         return false;
     }
 
@@ -307,16 +306,60 @@ public class DashboardController {
     }
 
     public void registrationSaveOnAction(ActionEvent actionEvent) {
+        try {
+            boolean intake = saveIntake(new Intake());
+            boolean payment = savePayment(new Payment());
+            boolean registration = saveRegistration(new Registration());
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to save" + e.getMessage()).show();
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private boolean saveRegistration(Registration rsg) throws SQLException, ClassNotFoundException {
+        String query = "INSERT INTO Registraction VALUES(?,?,?,?)";
+        PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(query);
+        stm.setObject(1, rsg.getRegistration_id());
+        stm.setObject(2, rsg.getReg_date());
+        stm.setObject(3, rsg.getStudent_id());
+        stm.setObject(4, rsg.getIntake_id());
+
+        return stm.executeUpdate() > 0;
+    }
+
+    private boolean savePayment(Payment pay) throws SQLException, ClassNotFoundException {
+        String query = "INSERT INTO Intake VALUES(?,?,?,?)";
+        PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(query);
+        stm.setObject(1, pay.getPayment_id());
+        stm.setObject(2, pay.getDate());
+        stm.setObject(3, pay.getCost());
+        stm.setObject(4, pay.getRegistration_id());
+
+        return stm.executeUpdate() > 0;
+    }
+
+    private boolean saveIntake(Intake intake) throws SQLException, ClassNotFoundException {
+        String query = "INSERT INTO Intake VALUES(?,?,?,?,?)";
+        PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(query);
+        stm.setObject(1, intake.getIntake_id());
+        stm.setObject(2, intake.getDate());
+        stm.setObject(3, intake.getIntakeCol());
+        stm.setObject(4, intake.getDescription());
+        stm.setObject(5, intake.getCourse_id());
+
+        return stm.executeUpdate() > 0;
     }
 
     public void cancelOnAction(ActionEvent actionEvent) {
         cmbCourseId.getSelectionModel().clearSelection();
-        clear(txtStuAddress,txtStudentName,txtStudentEmail,txtStudentContact,txtStudentNIC,txtIntakeCol,txtDescription,txtCost);
+        clear(txtStuAddress, txtStudentName, txtStudentEmail, txtStudentContact, txtStudentNIC, txtIntakeCol, txtDescription, txtCost);
     }
 
-    private void clear(JFXTextField... field){
+    private void clear(JFXTextField... field) {
         for (JFXTextField textField : field) {
             textField.clear();
         }
-    }}
+    }
+}
