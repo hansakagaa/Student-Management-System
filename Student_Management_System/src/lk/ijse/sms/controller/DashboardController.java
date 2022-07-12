@@ -220,6 +220,12 @@ public class DashboardController {
     }
 
     public void cancelOnAction(ActionEvent actionEvent) {
-
+        cmbCourseId.getSelectionModel().clearSelection();
+        clear(txtStuAddress,txtStudentName,txtStudentEmail,txtStudentContact,txtStudentNIC,txtIntakeCol,txtDescription,txtCost);
     }
-}
+
+    private void clear(JFXTextField... field){
+        for (JFXTextField textField : field) {
+            textField.clear();
+        }
+    }}
