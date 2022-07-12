@@ -1,0 +1,22 @@
+*{
+    -fx-font-family: Ubuntu;
+}
+
+#header{
+    -fx-font-size: 28;
+    -fx-effect: dropshadow(gaussian, white, 2, 1.0, 0, 0);
+}
+
+#txt{
+    -fx-alignment: center;
+    -fx-background-color: #eeeeee;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+
+#student{
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-background-color: #0984e3;
+    -fx-text-fill: white;
+}

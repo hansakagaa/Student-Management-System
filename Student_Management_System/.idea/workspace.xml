@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="beb7358c-e715-49cb-943b-b8d9a0a8fd90" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/view/Dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/view/Dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lk/ijse/sms/view/assets/styles/Dashboard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/lk/ijse/sms/view/assets/styles/Dashboard.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +36,7 @@
         <option value="Kotlin Class" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -60,6 +63,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/lk/ijse/sms/libs/mysql-connector-java-8.0.11.jar!/" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -74,7 +78,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657599661484</updated>
-      <workItem from="1657599664476" duration="4925000" />
+      <workItem from="1657599664476" duration="6348000" />
     </task>
     <servers />
   </component>
