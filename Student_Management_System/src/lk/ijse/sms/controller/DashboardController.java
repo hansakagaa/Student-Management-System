@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class DashboardController {
     public JFXButton btnSave;
 
     public void initialize() {
+        btnStudentDelete.setVisible(false);
         lordDateAndTime();
         lordCourseId();
         try {
@@ -211,7 +213,8 @@ public class DashboardController {
         String contact = txtStudentContact.getText();
         String address = txtStuAddress.getText();
         String nic = txtStudentNIC.getText();
-        if (btnSave.getText().equalsIgnoreCase("Save")) {
+
+        if (btnStudent.getText().equalsIgnoreCase("Save")) {
             /*Save Student*/
             try {
                 if (existStudent(id)) {
@@ -219,9 +222,9 @@ public class DashboardController {
                 }
 
                 boolean student = saveStudent(new Student(id, name, email, contact, address, nic));
-
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to save the Student " + e.getMessage()).show();
+                System.out.println(e.getMessage());
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -235,8 +238,7 @@ public class DashboardController {
                     new Alert(Alert.AlertType.ERROR, "There is no such student associated with the id " + id).show();
                 }
 
-                Boolean student = UpdateStudent(new Student(id, name, email, contact, address, nic));
-
+                boolean student = UpdateStudent(new Student(id, name, email, contact, address, nic));
             } catch (SQLException e) {
                 new Alert(Alert.AlertType.ERROR, "Failed to update the student " + id + e.getMessage()).show();
             } catch (ClassNotFoundException e) {
@@ -262,19 +264,19 @@ public class DashboardController {
         PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(
                 "UPDATE Student SET student_name=?, email=?, contact=?, address=?, nic=? WHERE student_id=?"
         );
-        stm.setObject(1, std.getStudent_id());
-        stm.setObject(2, std.getStudent_name());
-        stm.setObject(3, std.getEmail());
-        stm.setObject(4, std.getContact());
-        stm.setObject(5, std.getAddress());
-        stm.setObject(6, std.getNic());
+        stm.setObject(1, std.getStudent_name());
+        stm.setObject(2, std.getEmail());
+        stm.setObject(3, std.getContact());
+        stm.setObject(4, std.getAddress());
+        stm.setObject(5, std.getNic());
+        stm.setObject(6, std.getStudent_id());
 
         return stm.executeUpdate() > 0;
     }
 
     private boolean existStudent(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pStm = connection.prepareStatement("");
+        PreparedStatement pStm = connection.prepareStatement("SELECT student_id FROM Student WHERE student_id=?");
         pStm.setObject(1, id);
 
         return pStm.executeQuery().next();
@@ -288,7 +290,11 @@ public class DashboardController {
             }
             boolean student = deleteStudent(id);
 
-            clear(txtStudentId, txtStudentIdSearch, txtStudentName, txtStudentEmail, txtStudentContact, txtStuAddress, txtStudentNIC);
+            lordStudentId();
+            btnStudent.setText("Save");
+            btnStudentDelete.setVisible(false);
+            txtStudentIdSearch.setFocusTraversable(false);
+            clear(txtStudentIdSearch, txtStudentName, txtStudentEmail, txtStudentContact, txtStuAddress, txtStudentNIC);
 
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to delete the student " + id).show();
@@ -309,12 +315,16 @@ public class DashboardController {
         String id = txtStudentIdSearch.getText();
         try {
             Student std = searchStudent(id);
-            txtStudentId.setText(std.getStudent_id());
-            txtStudentName.setText(std.getStudent_name());
-            txtStudentEmail.setText(std.getEmail());
-            txtStudentContact.setText(std.getContact());
-            txtStuAddress.setText(std.getAddress());
-            txtStudentNIC.setText(std.getNic());
+            if (std!=null) {
+                txtStudentId.setText(std.getStudent_id());
+                txtStudentName.setText(std.getStudent_name());
+                txtStudentEmail.setText(std.getEmail());
+                txtStudentContact.setText(std.getContact());
+                txtStuAddress.setText(std.getAddress());
+                txtStudentNIC.setText(std.getNic());
+                btnStudent.setText("Update");
+                btnStudentDelete.setVisible(true);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -335,19 +345,24 @@ public class DashboardController {
 
     public void registrationSaveOnAction(ActionEvent actionEvent) {
         try {
-            boolean intake = saveIntake(new Intake());
-            boolean payment = savePayment(new Payment());
-            boolean registration = saveRegistration(new Registration());
+            boolean intake = saveIntake(new Intake(txtIntakeId.getText(), startDate.getValue(), txtIntakeCol.getText(), txtDescription.getText(), cmbCourseId.getValue()));
+            boolean registration = saveRegistration(new Registration(txtRegistration_Id.getText(), LocalDate.now(), txtStudentId.getText(), txtIntakeId.getText()));
+            boolean payment = savePayment(new Payment(txtPaymentId.getText(), paymentDate.getValue(), Double.parseDouble(txtCost.getText()), txtRegistration_Id.getText()));
+            lordRegistrationId();
+            lordStudentId();
+            lordIntakeId();
+            lordPaymentId();
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Failed to save" + e.getMessage()).show();
-            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        cmbCourseId.getSelectionModel().clearSelection();
+        clear(txtStudentIdSearch, txtStuAddress, txtStudentName, txtStudentEmail, txtStudentContact, txtStudentNIC, txtIntakeCol, txtDescription, txtCost);
     }
 
     private boolean saveRegistration(Registration rsg) throws SQLException, ClassNotFoundException {
-        String query = "INSERT INTO Registraction VALUES(?,?,?,?)";
+        String query = "INSERT INTO Registration VALUES(?,?,?,?)";
         PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(query);
         stm.setObject(1, rsg.getRegistration_id());
         stm.setObject(2, rsg.getReg_date());
@@ -358,7 +373,7 @@ public class DashboardController {
     }
 
     private boolean savePayment(Payment pay) throws SQLException, ClassNotFoundException {
-        String query = "INSERT INTO Intake VALUES(?,?,?,?)";
+        String query = "INSERT INTO Payment VALUES(?,?,?,?)";
         PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(query);
         stm.setObject(1, pay.getPayment_id());
         stm.setObject(2, pay.getDate());
@@ -382,7 +397,7 @@ public class DashboardController {
 
     public void cancelOnAction(ActionEvent actionEvent) {
         cmbCourseId.getSelectionModel().clearSelection();
-        clear(txtStuAddress, txtStudentName, txtStudentEmail, txtStudentContact, txtStudentNIC, txtIntakeCol, txtDescription, txtCost);
+        clear(txtStudentIdSearch, txtStuAddress, txtStudentName, txtStudentEmail, txtStudentContact, txtStudentNIC, txtIntakeCol, txtDescription, txtCost);
     }
 
     private void clear(JFXTextField... field) {

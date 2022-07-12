@@ -21,7 +21,7 @@
       <JFXTextField id="txt" fx:id="txtStuAddress" labelFloat="true" layoutX="205.0" layoutY="135.0" prefHeight="25.0" prefWidth="300.0" promptText="Student Address :" unFocusColor="WHITE" />
       <JFXTextField id="txt" fx:id="txtStudentNIC" labelFloat="true" layoutX="530.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" promptText="Student NIC :" unFocusColor="WHITE" />
       <JFXButton id="student" fx:id="btnStudent" buttonType="RAISED" layoutX="785.0" layoutY="135.0" onAction="#studentSaveOrUpdateOnAction" text="Save" />
-      <JFXButton id="student" fx:id="btnStudentDelete" buttonType="RAISED" layoutX="870.0" layoutY="135.0" onAction="#studentDeleteOnAction" text="Delete" />
+      <JFXButton id="stdDelete" fx:id="btnStudentDelete" buttonType="RAISED" layoutX="870.0" layoutY="135.0" onAction="#studentDeleteOnAction" text="Delete" />
       <JFXTextField id="txt" fx:id="txtStudentIdSearch" labelFloat="true" layoutX="30.0" layoutY="180.0" prefHeight="25.0" prefWidth="150.0" promptText="Student Id :" unFocusColor="WHITE" />
       <JFXButton id="btnSearch" fx:id="btnStuSearch" buttonType="RAISED" layoutX="205.0" layoutY="180.0" onAction="#studentSearchOnAction" text="Search" />
       <Separator layoutX="285.0" layoutY="195.0" prefWidth="555.0" />

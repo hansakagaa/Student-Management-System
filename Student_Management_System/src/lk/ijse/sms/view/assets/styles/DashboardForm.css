@@ -19,6 +19,12 @@
     -fx-background-color: #0984e3;
     -fx-text-fill: white;
 }
+#stdDelete{
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-background-color: #eb2f06;
+    -fx-text-fill: white;
+}
 
 #btnSearch{
     -fx-font-size: 15;
