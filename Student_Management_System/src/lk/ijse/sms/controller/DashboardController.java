@@ -53,6 +53,40 @@ public class DashboardController {
     public void initialize(){
         lordDateAndTime();
         lordCourseId();
+        try {
+            lordRegistrationId();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void lordRegistrationId() throws SQLException, ClassNotFoundException {
+        String id;
+        ResultSet rst = DBConnection.getInstance().getConnection().prepareStatement(
+                "SELECT registration_id FROM Registration ORDER BY registration_id DESC LIMIT 1"
+        ).executeQuery();
+        if (rst.next()){
+
+            int tempId = Integer.
+                    parseInt(rst.getString(1).split("-")[1]);
+            tempId=tempId+1;
+            if (tempId<9){
+                id = "REG00-00"+tempId;
+            }else if(tempId<99){
+                id = "REG00-0"+tempId;
+            }else{
+                id = "REG00-"+tempId;
+            }
+
+        }else{
+            id =  "REG00-001";
+        }
+
+        txtRegistration_Id.setText(id);
     }
 
     private void lordCourseId() {
