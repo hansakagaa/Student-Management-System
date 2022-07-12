@@ -302,7 +302,31 @@ public class DashboardController {
     }
 
     public void studentSearchOnAction(ActionEvent actionEvent) {
+        String id = txtStudentIdSearch.getText();
+        try {
+            Student std = searchStudent(id);
+            txtStudentId.setText(std.getStudent_id());
+            txtStudentName.setText(std.getStudent_name());
+            txtStudentEmail.setText(std.getEmail());
+            txtStudentContact.setText(std.getContact());
+            txtStuAddress.setText(std.getAddress());
+            txtStudentNIC.setText(std.getNic());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private Student searchStudent(String id) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pStm = connection.prepareStatement("SELECT * FROM Student WHERE student_id=?");
+        pStm.setObject(1, id);
+        ResultSet rst = pStm.executeQuery();
+        if (rst.next()){
+            return new Student(rst.getString(1), rst.getString(2), rst.getString(3), rst.getString(4), rst.getString(5), rst.getString(6));
+        }
+        return null;
     }
 
     public void registrationSaveOnAction(ActionEvent actionEvent) {
