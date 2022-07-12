@@ -16,6 +16,7 @@ import lk.ijse.sms.db.DBConnection;
 import lk.ijse.sms.model.Course;
 import lk.ijse.sms.model.Student;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,7 +37,7 @@ public class DashboardController {
     public JFXTextField txtStudentNIC;
     public JFXButton btnStudent;
     public JFXButton btnStudentDelete;
-    public JFXTextField StudentIdSearch;
+    public JFXTextField txtStudentIdSearch;
     public JFXButton btnStuSearch;
     public JFXTextField txtRegistration_Id;
     public Label lblDateTime;
@@ -258,7 +259,7 @@ public class DashboardController {
         return stm.executeUpdate()>0;
     }
 
-    private Boolean UpdateStudent(Student std) throws SQLException, ClassNotFoundException {
+    private boolean UpdateStudent(Student std) throws SQLException, ClassNotFoundException {
         PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(
                 "UPDATE Student SET student_name=?, email=?, contact=?, address=?, nic=? WHERE student_id=?"
         );
@@ -277,7 +278,28 @@ public class DashboardController {
     }
 
     public void studentDeleteOnAction(ActionEvent actionEvent) {
+        String id = txtStudentId.getText();
+        try {
+            if (!existStudent(id)) {
+                new Alert(Alert.AlertType.ERROR, "There is no such student associated with the id " + id).show();
+            }
+            boolean student = deleteStudent(id);
 
+            clear(txtStudentId, txtStudentIdSearch, txtStudentName, txtStudentEmail, txtStudentContact, txtStuAddress, txtStudentNIC);
+
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to delete the student " + id).show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean deleteStudent(String id) throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pStm = connection.prepareStatement("DELETE FROM Student WHERE student_id=?");
+        pStm.setObject(1, id);
+
+        return pStm.executeUpdate() > 0;
     }
 
     public void studentSearchOnAction(ActionEvent actionEvent) {
