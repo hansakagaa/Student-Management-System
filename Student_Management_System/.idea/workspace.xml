@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="beb7358c-e715-49cb-943b-b8d9a0a8fd90" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/lk/ijse/sms/model/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -41,7 +42,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="2BpOfL6OH77IVqVAOLjytDNyEyV" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -49,6 +52,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -68,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657599661484</updated>
-      <workItem from="1657599664476" duration="3028000" />
+      <workItem from="1657599664476" duration="3441000" />
     </task>
     <servers />
   </component>
@@ -115,5 +122,9 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="163" y="27" width="1024" height="741" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1657602694550" />
+    <state x="352" y="291" width="646" height="220" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1657602931802">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="352" y="291" width="646" height="220" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.27.1366.741@0.27.1366.741" timestamp="1657602931802" />
   </component>
 </project>
