@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.ijse.sms.db.DBConnection;
 import lk.ijse.sms.model.Course;
+import lk.ijse.sms.model.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -204,7 +205,75 @@ public class DashboardController {
     }
 
     public void studentSaveOrUpdateOnAction(ActionEvent actionEvent) {
+        String id = txtStudentId.getText();
+        String name = txtStudentName.getText();
+        String email = txtStudentEmail.getText();
+        String contact = txtStudentContact.getText();
+        String address = txtStuAddress.getText();
+        String nic = txtStudentNIC.getText();
+        if (btnSave.getText().equalsIgnoreCase("Save")) {
+            /*Save Student*/
+            try {
+                if (existStudent(id)) {
+                    new Alert(Alert.AlertType.ERROR, id + " already exists").show();
+                }
 
+                boolean student = saveStudent(new Student(id, name, email, contact, address, nic));
+
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "Failed to save the Student " + e.getMessage()).show();
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+        } else {
+            /*Update student*/
+            try {
+                if (!existStudent(id)) {
+                    new Alert(Alert.AlertType.ERROR, "There is no such student associated with the id " + id).show();
+                }
+
+                Boolean student = UpdateStudent(new Student(id, name, email, contact, address, nic));
+
+            } catch (SQLException e) {
+                new Alert(Alert.AlertType.ERROR, "Failed to update the student " + id + e.getMessage()).show();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private boolean saveStudent(Student std) throws SQLException, ClassNotFoundException {
+        String query="INSERT INTO Student VALUES(?,?,?,?,?,?)";
+        PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(query);
+        stm.setObject(1,std.getStudent_id());
+        stm.setObject(2,std.getStudent_name());
+        stm.setObject(3,std.getEmail());
+        stm.setObject(4,std.getContact());
+        stm.setObject(5,std.getAddress());
+        stm.setObject(6,std.getNic());
+
+        return stm.executeUpdate()>0;
+    }
+
+    private Boolean UpdateStudent(Student std) throws SQLException, ClassNotFoundException {
+        PreparedStatement stm = DBConnection.getInstance().getConnection().prepareStatement(
+                "UPDATE Student SET student_name=?, email=?, contact=?, address=?, nic=? WHERE student_id=?"
+        );
+        stm.setObject(1,std.getStudent_id());
+        stm.setObject(2,std.getStudent_name());
+        stm.setObject(3,std.getEmail());
+        stm.setObject(4,std.getContact());
+        stm.setObject(5,std.getAddress());
+        stm.setObject(6,std.getNic());
+
+        return stm.executeUpdate()>0;
+    }
+
+    private boolean existStudent(String id){
+        return false;
     }
 
     public void studentDeleteOnAction(ActionEvent actionEvent) {
